@@ -6,11 +6,14 @@ import Spacer from '../../components/ThemedSpace'
 import { Link } from 'expo-router'
 import PrimaryBtn from '../../components/PrimaryBtn'
 import ThemedInput from '../../components/ThemedInput'
+import useUser from '../../hooks/useUser'
 
 const Login = () => {
+  const { user } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSubmit = () => {
+    console.log("Current User", user);
     console.log("Button Pressed", email, password);
   }
 
