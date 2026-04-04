@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "first_app",
-    "slug": "first_app",
+    "scheme": "bookshelf",
+    "name": "bookshelf",
+    "slug": "bookshelf",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -24,6 +25,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
