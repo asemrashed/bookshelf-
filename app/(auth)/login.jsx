@@ -3,18 +3,27 @@ import React, { useState } from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
 import Spacer from '../../components/ThemedSpace'
-import { Link } from 'expo-router'
+import { Link, useNavigation } from 'expo-router'
 import PrimaryBtn from '../../components/PrimaryBtn'
 import ThemedInput from '../../components/ThemedInput'
 import useUser from '../../hooks/useUser'
 
 const Login = () => {
-  const { user } = useUser();
+  const { user, login } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const handleSubmit = () => {
-    console.log("Current User", user);
-    console.log("Button Pressed", email, password);
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigation();
+
+  const handleSubmit = async () => {
+    setError(null);
+    try {
+      await login(email, password);
+      // navigate.push('/profile');
+    } catch (error) {
+      setError(error.message || "An error occurred during login");
+    }
   }
 
   return (
@@ -38,6 +47,8 @@ const Login = () => {
         placeholder='Password' 
         secureTextEntry 
       />
+      <Spacer height={30}/>
+      {error && <ThemedText style={{ width: '80%', color: 'red', padding: 10, borderWidth: 1, borderColor: 'red' }}>{error}</ThemedText>}
       <Spacer height={30}/>
       <PrimaryBtn onPress={handleSubmit}>
         <Text>Login</Text>

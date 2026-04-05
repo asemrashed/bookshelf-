@@ -1,12 +1,17 @@
 import { Image, StyleSheet, Text, useColorScheme, View } from "react-native";
 import React from "react";
-import Logo from "../assets/LOGO.png";
 import { Link } from "expo-router";
+
 import ThemedView from "../components/ThemedView";
 import ThemedText from "../components/ThemeText";
 import Spacer from "../components/ThemedSpace";
 
+import useUser from "../hooks/useUser";
+import Logo from "../assets/LOGO.png";
+
 export default function Home() {
+  const { user } = useUser();
+  console.log("Current user:", user);
   return (
     <ThemedView safe={true} style={[styles.container]}>
       <Image source={Logo} style={styles.logo} />
