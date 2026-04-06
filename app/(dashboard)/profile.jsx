@@ -14,7 +14,6 @@ const Profile = () => {
     setError(null);
     try{
       await logout();
-      alert('Logged out successfully');
       setError(null);
     }catch (error) {
       setError(error.message || "An error occurred during logout");

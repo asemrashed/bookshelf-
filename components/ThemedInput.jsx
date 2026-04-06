@@ -10,7 +10,7 @@ const ThemedInput = ({style, ...props}) => {
         style={{
             backgroundColor: theme.card,
             color: theme.text,
-            padding: 10,
+            padding: 15,
             borderRadius: 5,
             borderColor: Colors.primary,
             borderWidth: 1,

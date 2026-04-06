@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
@@ -27,37 +27,39 @@ const Login = () => {
   }
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText title={true}>Login</ThemedText>
-      <Spacer height={40}/>
-      <ThemedInput 
-        style={{width: '80%'}}
-        value={email}
-        onChangeText={setEmail}
-        textContentType='emailAddress'
-        placeholder='Email' 
-        keyboardType='email-address' 
-        autoCapitalize='none'
-      />
-      <Spacer height={20}/>
-      <ThemedInput 
-        style={{width: '80%'}}
-        value={password}
-        onChangeText={setPassword}
-        placeholder='Password' 
-        secureTextEntry 
-      />
-      <Spacer height={30}/>
-      {error && <ThemedText style={{ width: '80%', color: 'red', padding: 10, borderWidth: 1, borderColor: 'red' }}>{error}</ThemedText>}
-      <Spacer height={30}/>
-      <PrimaryBtn onPress={handleSubmit}>
-        <Text>Login</Text>
-      </PrimaryBtn>
-      <Spacer height={40}/>
-      <ThemedText style={{textAlign:'center'}}>Don't have an account? 
-        <Link href={'/register'} style={{ color: 'blue' }}> Register</Link>
-      </ThemedText>
-    </ThemedView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
+      <ThemedView style={styles.container}>
+        <ThemedText title={true}>Login</ThemedText>
+        <Spacer height={40}/>
+        <ThemedInput 
+          style={{width: '80%'}}
+          value={email}
+          onChangeText={setEmail}
+          textContentType='emailAddress'
+          placeholder='Email' 
+          keyboardType='email-address' 
+          autoCapitalize='none'
+        />
+        <Spacer height={20}/>
+        <ThemedInput 
+          style={{width: '80%'}}
+          value={password}
+          onChangeText={setPassword}
+          placeholder='Password' 
+          secureTextEntry 
+        />
+        <Spacer height={30}/>
+        {error && <ThemedText style={{ width: '80%', color: 'red', padding: 10, borderWidth: 1, borderColor: 'red' }}>{error}</ThemedText>}
+        <Spacer height={30}/>
+        <PrimaryBtn onPress={handleSubmit}>
+          <Text>Login</Text>
+        </PrimaryBtn>
+        <Spacer height={40}/>
+        <ThemedText style={{textAlign:'center'}}>Don't have an account? 
+          <Link href={'/register'} style={{ color: 'blue' }}> Register</Link>
+        </ThemedText>
+      </ThemedView>
+    </TouchableWithoutFeedback>
   )
 }
 
