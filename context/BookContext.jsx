@@ -10,7 +10,7 @@ export const BookContext = createContext();
 
 
 export function BookProvider ({children}) {
-    const { books, setBooks } = useState(null);
+    const { books, setBooks } = useState([]);
     const {user} = useUser();
 
     async function getBooks(){
@@ -30,7 +30,6 @@ export function BookProvider ({children}) {
                 {...bookData, userId: user.$id},
                 [
                     Permission.read(Role.user(user.$id)),
-                    Permission.write(Role.user(user.$id)),
                     Permission.update(Role.user(user.$id)),
                     Permission.delete(Role.user(user.$id))
                 ]
@@ -50,7 +49,7 @@ export function BookProvider ({children}) {
 
 
     return (
-        <BookContext.Provider value={{ getBooks, getBookById, addBook, deleteBook}}>
+        <BookContext.Provider value={{ books, getBooks, getBookById, addBook, deleteBook}}>
             {children}
         </BookContext.Provider>
     )
